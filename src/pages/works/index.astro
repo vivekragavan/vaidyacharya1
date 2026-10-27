@@ -11,9 +11,19 @@ const { bibliography } = bio;
 
 // The four Works tabs, each filled from groups of the Biography page's bibliography.
 const tabs = [
-  { label: 'Ayurveda Medicine', groups: ['Ayurveda – Medicine'] },
+  {
+    label: 'Ayurveda Medicine',
+    groups: ['Ayurveda – Medicine'],
+    // In the order of the landing page's Know More section, ahead of the rest.
+    first: ['Astanga Hridaya', 'Madhava Nidhana'],
+  },
   { label: 'Vedanta Philosophy', groups: ['Vedanta – Philosophy'] },
-  { label: 'Language and Literature', groups: ['Language and Literature'] },
+  {
+    label: 'Language and Literature',
+    groups: ['Language and Literature'],
+    // In the order of the landing page's Know More section, ahead of the rest.
+    first: ['Jīvānandanam', 'Kirat Arjuniya'],
+  },
   { label: 'General', groups: ['Keynote Address', 'Available online'] },
 ];
 
@@ -42,13 +52,30 @@ const entry = (it: { text: string; note?: string }) => {
     description: [...(book?.description ?? []), ...(it.note ? [it.note] : [])],
   };
 };
-const panels = tabs.map((t) => {
-  const gs = bibliography.groups.filter((g) => t.groups.includes(g.heading));
-  return {
-    entries: gs.flatMap((g) => g.items.map(entry)),
-    footnotes: gs.flatMap((g) => ('footnote' in g && g.footnote ? [g.footnote] : [])),
-  };
-});
+// Bibliography entries shown under a different tab from their bibliography group,
+// keyed by how their title begins.
+const moved: Record<string, string> = {
+  'Jīvānandanam': 'Language and Literature',
+  'Mēkasantēcam': 'Language and Literature',
+  'Tantra Sara Sangraha': 'Vedanta Philosophy',
+};
+const all = bibliography.groups.flatMap((g) =>
+  g.items.map((it) => {
+    const e = entry(it);
+    const to = Object.keys(moved).find((k) => e.title.startsWith(k));
+    return { ...e, tab: to ? moved[to] : tabs.find((t) => t.groups.includes(g.heading))?.label };
+  }),
+);
+const rank = (t: (typeof tabs)[number], title: string) => {
+  const i = ('first' in t ? t.first : []).findIndex((k) => title.startsWith(k));
+  return i < 0 ? Infinity : i;
+};
+const panels = tabs.map((t) => ({
+  entries: all.filter((e) => e.tab === t.label).sort((a, b) => rank(t, a.title) - rank(t, b.title)),
+  footnotes: bibliography.groups
+    .filter((g) => t.groups.includes(g.heading))
+    .flatMap((g) => ('footnote' in g && g.footnote ? [g.footnote] : [])),
+}));
 
 // Books on this page that no bibliography entry picked up keep their old listing.
 const placed = new Set([...used].map((k) => cards[k]));
