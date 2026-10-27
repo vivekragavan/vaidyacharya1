@@ -2,34 +2,96 @@
 import Base from '../../layouts/Base.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import content from '../../data/content.json';
+import bio from '../../data/biography.json';
 import { slug, hamsaPdf } from '../../lib/site';
 import { link } from '../../lib/url';
 
 const { home } = content;
-const groups = [...new Set(home.books.map((b) => b.category))];
+const { bibliography } = bio;
+
+// The four Works tabs, each filled from groups of the Biography page's bibliography.
+const tabs = [
+  { label: 'Ayurveda Medicine', groups: ['Ayurveda – Medicine'] },
+  { label: 'Vedanta Philosophy', groups: ['Vedanta – Philosophy'] },
+  { label: 'Language and Literature', groups: ['Language and Literature'] },
+  { label: 'General', groups: ['Keynote Address', 'Available online'] },
+];
+
+// Books with a picture and description on this page, keyed by how their
+// bibliography entry's title begins. Each is used for the first match only.
+const cards: Record<string, string> = {
+  'Astanga Hridaya': 'Ashtanga Hridayam',
+  'Jīvānandanam': 'Jivanandanam of Anandaraya Makhin',
+  'Madhava Nidhana': 'Madhava Nidanam',
+  'Kirat Arjuniya': 'Kiratarjuniya',
+  'The Presidential Address': 'The Presidential Address',
+  'Tantra Sara Sangraha': 'Tantrasarasangra Pandit',
+};
+const used = new Set<string>();
+const titleOf = (text: string) => text.match(/<cite>(.*?)<\/cite>/)?.[1] ?? text.replace(/<[^>]+>/g, '');
+const entry = (it: { text: string; note?: string }) => {
+  const title = titleOf(it.text);
+  const key = Object.keys(cards).find((k) => title.startsWith(k) && !used.has(k));
+  if (key) used.add(key);
+  const book = key ? home.books.find((b) => b.title === cards[key]) : undefined;
+  return {
+    title,
+    citation: it.text,
+    image: book?.image,
+    id: book ? slug(book.title) : undefined,
+    description: [...(book?.description ?? []), ...(it.note ? [it.note] : [])],
+  };
+};
+const panels = tabs.map((t) => {
+  const gs = bibliography.groups.filter((g) => t.groups.includes(g.heading));
+  return {
+    entries: gs.flatMap((g) => g.items.map(entry)),
+    footnotes: gs.flatMap((g) => ('footnote' in g && g.footnote ? [g.footnote] : [])),
+  };
+});
+
+// Books on this page that no bibliography entry picked up keep their old listing.
+const placed = new Set([...used].map((k) => cards[k]));
+const rest = home.books.filter((b) => !placed.has(b.title));
+const groups = [...new Set(rest.map((b) => b.category))];
 ---
 
-<Base title="Works" description="The works of Pandit Duraiswami Aiyangar: Ayurveda, Sanskrit literature and general books, with the Hamsa Sandesham English translation to read and download.">
-  <section class="page-head wrap">
-    <span class="eyebrow">Works of Pandit Duraiswami Aiyangar</span>
-    <h1>Works</h1>
+<Base title="Books" description="The books of Pandit Duraiswami Aiyangar: Ayurveda, Sanskrit literature and general books, with the Hamsa Sandesham English translation to read and download.">
+  <section class="page-head wrap head">
+    <h1 class="eyebrow">Books of Pandit Duraiswami Aiyangar</h1>
   </section>
 
   <section class="wrap">
-    <h2 class="group">English translation</h2>
-    <WorkCard title="Hamsa Sandesham (English Translation)" id="hamsa-sandesham" headingLevel="h3" description={[]}>
-      <p class="tp">{hamsaPdf.titlePage.map((l) => <span>{l}</span>)}</p>
-      <p>English translation by {hamsaPdf.translator}. PDF, {hamsaPdf.pages} pages, {hamsaPdf.size}.</p>
-      <div class="actions">
-        <a class="btn solid" href={link('/works/hamsa-sandesham/')}>Read online</a>
-        <a class="btn" href={link(hamsaPdf.href)} download>Download PDF</a>
+    <div class="tabs" role="tablist" aria-label="Categories of works">
+      {tabs.map((t, i) => (
+        <button type="button" role="tab" id={`tab-${i}`} aria-controls={`panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{t.label}</button>
+      ))}
+    </div>
+    {tabs.map((t, i) => (
+      <div class="panel" role="tabpanel" id={`panel-${i}`} aria-labelledby={`tab-${i}`} tabindex="0">
+        {t.label === 'Vedanta Philosophy' && (
+          <WorkCard title="Hamsa Sandesham (English Translation)" id="hamsa-sandesham" headingLevel="h3" description={[]}>
+            <p class="tp">{hamsaPdf.titlePage.map((l) => <span>{l}</span>)}</p>
+            <p>English translation by {hamsaPdf.translator}. PDF, {hamsaPdf.pages} pages, {hamsaPdf.size}.</p>
+            <div class="actions">
+              <a class="btn solid" href={link('/works/hamsa-sandesham/')}>Read online</a>
+              <a class="btn" href={link(hamsaPdf.href)} download>Download PDF</a>
+            </div>
+          </WorkCard>
+        )}
+        {panels[i].entries.map((e) => (
+          <WorkCard title={e.title} image={e.image} description={e.description} id={e.id}>
+            <p class="citation" set:html={e.citation} />
+          </WorkCard>
+        ))}
+        {panels[i].footnotes.map((f) => <p class="footnote">{f}</p>)}
       </div>
-    </WorkCard>
+    ))}
 
     {groups.map((g) => (
       <>
         <h2 class="group">{g}</h2>
-        {home.books.filter((b) => b.category === g).map((b) => (
+        {rest.filter((b) => b.category === g).map((b) => (
           <WorkCard title={b.title} image={b.image} description={b.description} id={slug(b.title)} />
         ))}
       </>
@@ -37,7 +99,78 @@ const groups = [...new Set(home.books.map((b) => b.category))];
   </section>
 </Base>
 
+<script>
+  for (const list of document.querySelectorAll<HTMLElement>('[role="tablist"]')) {
+    const tabs = [...list.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const select = (tab: HTMLButtonElement) => {
+      for (const t of tabs) {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')!)!.hidden = !on;
+      }
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', (e) => {
+        const step = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+        if (!step) return;
+        const next = tabs[(i + step + tabs.length) % tabs.length];
+        select(next);
+        next.focus();
+      });
+    });
+    select(tabs.find((t) => t.getAttribute('aria-selected') === 'true') ?? tabs[0]);
+  }
+</script>
+
 <style>
+  /* The page title is the small line above the tabs, with no gap before them. */
+  .head {
+    padding-bottom: 0;
+  }
+  .head h1 {
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: 0.14em;
+  }
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tabs [role='tab'] {
+    font: inherit;
+    font-size: var(--step--1);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: none;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    padding: 12px 16px;
+    margin-bottom: -1px;
+    cursor: pointer;
+  }
+  .tabs [role='tab']:hover {
+    color: var(--accent);
+  }
+  .tabs [role='tab'][aria-selected='true'] {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .citation {
+    font-size: var(--step--1);
+    color: var(--muted);
+    padding-top: 12px;
+    border-top: 1px dotted var(--line);
+  }
+  .footnote {
+    padding-block: 24px;
+    border-top: 1px solid var(--line);
+    font-style: italic;
+  }
   .tp span {
     display: block;
   }

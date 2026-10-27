@@ -12,7 +12,7 @@ export const nav = [
   { href: '/biography/', label: 'Biography' },
   { href: '/descendants/', label: 'Family' },
   { href: '/about/', label: 'About' },
-  { href: '/works/', label: 'Works' },
+  { href: '/works/', label: 'Books' },
   { href: '/contact/', label: 'Contact' },
 ];
 

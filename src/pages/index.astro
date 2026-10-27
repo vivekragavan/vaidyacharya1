@@ -35,7 +35,7 @@ const { home, about } = content;
 
   <section class="section">
     <div class="wrap">
-      <h2>Works</h2>
+      <h2>Books</h2>
       <WorkCard title="Hamsa Sandesham (English Translation)" description={[]}>
         <p>{hamsaPdf.titlePage.slice(1).join(' ')}</p>
         <div class="actions">
@@ -45,7 +45,7 @@ const { home, about } = content;
       {home.books.map((b) => (
         <WorkCard title={b.title} category={b.category} image={b.image} description={b.description} />
       ))}
-      <p class="all"><a class="btn solid" href={link('/works/')}>View all works</a></p>
+      <p class="all"><a class="btn solid" href={link('/works/')}>View all books</a></p>
     </div>
   </section>
 </Base>
