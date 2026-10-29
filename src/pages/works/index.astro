@@ -16,13 +16,20 @@ const tabs = [
     groups: ['Ayurveda – Medicine'],
     // In the order of the landing page's Know More section, ahead of the rest.
     first: ['Astanga Hridaya', 'Madhava Nidhana'],
+    // After all the rest.
+    last: ['Jīvānandanam'],
+    // Text only: its book pictures are on the Pictures page.
+    noImages: true,
   },
-  { label: 'Vedanta Philosophy', groups: ['Vedanta – Philosophy'] },
+  // Text only: its book pictures are on the Pictures page.
+  { label: 'Vedanta Philosophy', groups: ['Vedanta – Philosophy'], noImages: true },
   {
     label: 'Language and Literature',
     groups: ['Language and Literature'],
     // In the order of the landing page's Know More section, ahead of the rest.
-    first: ['Jīvānandanam', 'Kirat Arjuniya'],
+    first: ['Kirat Arjuniya'],
+    // Text only: its book pictures are on the Pictures page.
+    noImages: true,
   },
   { label: 'General', groups: ['Keynote Address', 'Available online'] },
 ];
@@ -55,7 +62,6 @@ const entry = (it: { text: string; note?: string }) => {
 // Bibliography entries shown under a different tab from their bibliography group,
 // keyed by how their title begins.
 const moved: Record<string, string> = {
-  'Jīvānandanam': 'Language and Literature',
   'Mēkasantēcam': 'Language and Literature',
   'Tantra Sara Sangraha': 'Vedanta Philosophy',
 };
@@ -67,11 +73,15 @@ const all = bibliography.groups.flatMap((g) =>
   }),
 );
 const rank = (t: (typeof tabs)[number], title: string) => {
+  if (('last' in t ? t.last : []).some((k) => title.startsWith(k))) return 2;
   const i = ('first' in t ? t.first : []).findIndex((k) => title.startsWith(k));
-  return i < 0 ? Infinity : i;
+  return i < 0 ? 1 : i / 100;
 };
 const panels = tabs.map((t) => ({
-  entries: all.filter((e) => e.tab === t.label).sort((a, b) => rank(t, a.title) - rank(t, b.title)),
+  entries: all
+    .filter((e) => e.tab === t.label)
+    .sort((a, b) => rank(t, a.title) - rank(t, b.title))
+    .map((e) => ('noImages' in t ? { ...e, image: undefined } : e)),
   footnotes: bibliography.groups
     .filter((g) => t.groups.includes(g.heading))
     .flatMap((g) => ('footnote' in g && g.footnote ? [g.footnote] : [])),

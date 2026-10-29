@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import content from '../../data/content.json';
+import { img } from '../../lib/images';
+
+// The pictures taken out of the Books page's Ayurveda Medicine, Vedanta Philosophy and Language and Literature tabs:
+// each book's title in content.json, and the caption to show if it differs.
+const titles: [string, string?][] = [
+  ['Ashtanga Hridayam'],
+  ['Madhava Nidanam'],
+  ['Jivanandanam of Anandaraya Makhin'],
+  ['Tantrasarasangra Pandit', 'Tantra Sara Sangraha'],
+  ['Kiratarjuniya'],
+];
+const pictures = titles.flatMap(([t, caption]) =>
+  content.home.books.filter((b) => b.title === t && b.image).map((b) => ({ image: b.image, title: caption ?? b.title })),
+);
+---
+
+<Base title="Pictures" description="Pictures from the books of Pandit Duraiswami Aiyangar.">
+  <section class="page-head wrap">
+    <span class="eyebrow">Pictures</span>
+  </section>
+  <section class="wrap">
+    <div class="pictures">
+      {pictures.map((b) => (
+        <figure>
+          <Image src={img(b.image)} alt={b.title} widths={[400, 800]} sizes="(min-width: 760px) 360px, 100vw" />
+          <figcaption>{b.title}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .pictures {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 36px;
+    padding-bottom: 36px;
+  }
+  .pictures img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+  }
+  .pictures figcaption {
+    margin-top: 10px;
+    font-family: var(--font-display);
+  }
+</style>

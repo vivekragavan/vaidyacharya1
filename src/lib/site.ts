@@ -14,6 +14,7 @@ export const nav = [
   { href: '/about/', label: 'About' },
   { href: '/works/', label: 'Books' },
   { href: '/contact/', label: 'Contact' },
+  { href: '/pictures/', label: 'Pictures' },
 ];
 
 export const hamsaPdf = {
