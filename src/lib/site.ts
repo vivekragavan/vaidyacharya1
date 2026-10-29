@@ -10,7 +10,7 @@ export const site = {
 export const nav = [
   { href: '/', label: 'Home' },
   { href: '/biography/', label: 'Biography' },
-  { href: '/descendants/', label: 'Family' },
+  { href: '/descendants/', label: 'Family Publications' },
   { href: '/about/', label: 'About' },
   { href: '/works/', label: 'Books' },
   { href: '/contact/', label: 'Contact' },
