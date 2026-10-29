@@ -194,24 +194,35 @@ const groups = [...new Set(rest.map((b) => b.category))];
     font-weight: inherit;
     letter-spacing: 0.14em;
   }
+  /* All the tabs stay on one row; on a narrow screen a long name wraps inside its own tab. */
   .tabs {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    align-items: stretch;
+    gap: 4px;
     border-bottom: 1px solid var(--line);
   }
   .tabs [role='tab'] {
+    flex: 0 1 auto;
     font: inherit;
     font-size: var(--step--1);
-    letter-spacing: 0.14em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink);
     background: none;
     border: 0;
     border-bottom: 3px solid transparent;
-    padding: 12px 16px;
-    margin-bottom: -1px;
+    padding: 12px 12px;
     cursor: pointer;
+  }
+  @media (max-width: 560px) {
+    .tabs {
+      gap: 0;
+    }
+    .tabs [role='tab'] {
+      padding: 10px 6px;
+      letter-spacing: 0.04em;
+      font-size: 0.8rem;
+    }
   }
   .tabs [role='tab']:hover {
     color: var(--accent);
