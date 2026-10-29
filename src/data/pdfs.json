@@ -83,7 +83,8 @@
     "match": "<cite>Kātampari",
     "pages": 81,
     "size": "857 KB",
-    "label": "English translation by Usha Srinivasan"
+    "label": "English translation by Usha Srinivasan",
+    "english": true
   },
   {
     "file": "/pdf/kiratarjuniya.pdf",
@@ -95,7 +96,8 @@
     "file": "/pdf/presidential-address.pdf",
     "match": "<cite>The Presidential Address",
     "pages": 38,
-    "size": "2 MB"
+    "size": "2 MB",
+    "english": true
   },
   {
     "file": "/pdf/mekasantecam.pdf",
@@ -107,7 +109,8 @@
     "file": "/pdf/pancaratraraksa.pdf",
     "match": "<cite>Śrī Pāñcarātrarakṣā",
     "pages": 281,
-    "size": "22 MB"
+    "size": "22 MB",
+    "english": true
   },
   {
     "file": "/pdf/hamsa-sandesham-english-translation-2020.pdf",
@@ -116,6 +119,7 @@
     "size": "380 KB",
     "label": "July 2020 version",
     "title": "Hamsa Sandesham (English Translation)",
-    "card": "hamsa-english"
+    "card": "hamsa-english",
+    "english": true
   }
 ]

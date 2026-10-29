@@ -109,22 +109,22 @@ const groups = [...new Set(rest.map((b) => b.category))];
     {tabs.map((t, i) => (
       <div class="panel" role="tabpanel" id={`panel-${i}`} aria-labelledby={`tab-${i}`} tabindex="0">
         {t.label === 'Vedanta Philosophy' && (
-          <WorkCard title="Hamsa Sandesham (English Translation)" id="hamsa-sandesham" headingLevel="h3" description={[]}>
+          <WorkCard title="Hamsa Sandesham" id="hamsa-sandesham" headingLevel="h3" description={[]}>
             <p class="tp">{hamsaPdf.titlePage.map((l) => <span>{l}</span>)}</p>
             <p>English translation by {hamsaPdf.translator}.</p>
             <div class="pdf">
               <p class="pdf-info"><strong>Version from the old vaidyacharya.org website. </strong>PDF, {hamsaPdf.pages} pages, {hamsaPdf.size}.</p>
               <div class="actions">
-                <a class="btn solid" href={link('/works/hamsa-sandesham/')}>Read online</a>
-                <a class="btn" href={link(hamsaPdf.href)} download>Download PDF</a>
+                <a class="btn solid" href={link('/works/hamsa-sandesham/')}>Read online – English</a>
+                <a class="btn" href={link(hamsaPdf.href)} download>Download PDF – English</a>
               </div>
             </div>
             {pdfs.filter((p) => p.card === 'hamsa-english').map((p) => (
               <div class="pdf">
                 <p class="pdf-info"><strong>{p.label}. </strong>PDF, {p.pages} pages, {p.size}.</p>
                 <div class="actions">
-                  <a class="btn solid" href={link(`/works/read/${p.file.replace(/^\/pdf\/|\.pdf$/g, '')}/`)}>Read online</a>
-                  <a class="btn" href={link(p.file)} download>Download PDF</a>
+                  <a class="btn solid" href={link(`/works/read/${p.file.replace(/^\/pdf\/|\.pdf$/g, '')}/`)}>Read online{'english' in p && p.english && ' – English'}</a>
+                  <a class="btn" href={link(p.file)} download>Download PDF{'english' in p && p.english && ' – English'}</a>
                 </div>
               </div>
             ))}
@@ -137,8 +137,8 @@ const groups = [...new Set(rest.map((b) => b.category))];
               <div class="pdf">
                 <p class="pdf-info">{p.label && <strong>{p.label}. </strong>}PDF, {p.pages} pages, {p.size}.</p>
                 <div class="actions">
-                  <a class="btn solid" href={link(`/works/read/${p.file.replace(/^\/pdf\/|\.pdf$/g, '')}/`)}>Read online</a>
-                  <a class="btn" href={link(p.file)} download>Download PDF</a>
+                  <a class="btn solid" href={link(`/works/read/${p.file.replace(/^\/pdf\/|\.pdf$/g, '')}/`)}>Read online{'english' in p && p.english && ' – English'}</a>
+                  <a class="btn" href={link(p.file)} download>Download PDF{'english' in p && p.english && ' – English'}</a>
                 </div>
               </div>
             ))}
