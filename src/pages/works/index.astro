@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import content from '../../data/content.json';
 import bio from '../../data/biography.json';
+import pdfs from '../../data/pdfs.json';
 import { slug, hamsaPdf } from '../../lib/site';
 import { link } from '../../lib/url';
 
@@ -54,6 +55,7 @@ const entry = (it: { text: string; note?: string }) => {
   return {
     title,
     citation: it.text,
+    pdfs: pdfs.filter((p) => it.text.includes(p.match)),
     image: book?.image,
     id: book ? slug(book.title) : undefined,
     description: [...(book?.description ?? []), ...(it.note ? [it.note] : [])],
@@ -119,6 +121,15 @@ const groups = [...new Set(rest.map((b) => b.category))];
         {panels[i].entries.map((e) => (
           <WorkCard title={e.title} image={e.image} description={e.description} id={e.id}>
             <p class="citation" set:html={e.citation} />
+            {e.pdfs.map((p) => (
+              <div class="pdf">
+                <p class="pdf-info">{p.label && <strong>{p.label}. </strong>}PDF, {p.pages} pages, {p.size}.</p>
+                <div class="actions">
+                  <a class="btn solid" href={link(`/works/read/${p.file.replace(/^\/pdf\/|\.pdf$/g, '')}/`)}>Read online</a>
+                  <a class="btn" href={link(p.file)} download>Download PDF</a>
+                </div>
+              </div>
+            ))}
           </WorkCard>
         ))}
         {panels[i].footnotes.map((f) => <p class="footnote">{f}</p>)}
@@ -202,6 +213,12 @@ const groups = [...new Set(rest.map((b) => b.category))];
     color: var(--muted);
     padding-top: 12px;
     border-top: 1px dotted var(--line);
+  }
+  .pdf {
+    margin-top: 16px;
+  }
+  .pdf-info {
+    margin-bottom: 8px;
   }
   .footnote {
     padding-block: 24px;

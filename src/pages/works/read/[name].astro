@@ -1,0 +1,69 @@
+---
+// A page to read one book's PDF online, for each PDF in pdfs.json.
+import Base from '../../../layouts/Base.astro';
+import bio from '../../../data/biography.json';
+import pdfs from '../../../data/pdfs.json';
+import { link } from '../../../lib/url';
+
+export function getStaticPaths() {
+  const cites = bio.bibliography.groups.flatMap((g) => g.items.map((it) => it.text));
+  return pdfs.map((p) => {
+    const cite = cites.find((c) => c.includes(p.match)) ?? '';
+    const title = cite.match(/<cite>(.*?)<\/cite>/)?.[1] ?? '';
+    return { params: { name: p.file.replace(/^\/pdf\/|\.pdf$/g, '') }, props: { ...p, title, cite } };
+  });
+}
+
+const { file, label, pages, size, title, cite } = Astro.props;
+const pdf = link(file);
+---
+
+<Base title={label ? `${title} (${label})` : title} description={`Read ${title} by Pandit Duraiswami Aiyangar online, or download the PDF.`}>
+  <section class="page-head wrap">
+    <span class="eyebrow"><a href={link('/works/')}>Books</a></span>
+    <h1>{title}{label && <span class="sub">{label}</span>}</h1>
+    <p class="citation" set:html={cite} />
+    <p>PDF, {pages} pages, {size}.</p>
+    <div class="actions">
+      <a class="btn solid" href={pdf} target="_blank" rel="noopener">Open the PDF</a>
+      <a class="btn" href={pdf} download>Download PDF</a>
+    </div>
+  </section>
+
+  <section class="wrap reader">
+    <object data={pdf} type="application/pdf" aria-label={title}>
+      <p class="fallback">
+        Your browser can’t show the PDF here. <a href={pdf}>Open {title} (PDF)</a>.
+      </p>
+    </object>
+  </section>
+</Base>
+
+<style>
+  .sub {
+    display: block;
+    font-size: 0.5em;
+    color: var(--muted);
+    margin-top: 0.3em;
+  }
+  .citation {
+    max-width: var(--measure);
+    color: var(--muted);
+  }
+  .reader object {
+    display: block;
+    width: 100%;
+    height: min(88vh, 1100px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card);
+  }
+  .fallback {
+    padding: 24px;
+  }
+  @media (max-width: 640px) {
+    .reader object {
+      height: 70vh;
+    }
+  }
+</style>

@@ -1,0 +1,98 @@
+[
+  {
+    "file": "/pdf/ashtanga-hridayam-vol-2-1935.pdf",
+    "match": "Volume 2, in Tamil",
+    "pages": 600,
+    "size": "104 MB",
+    "label": "Volume 2, revised 2nd edition, 1935"
+  },
+  {
+    "file": "/pdf/ashtanga-hridayam-vol-2-1920.pdf",
+    "match": "Volume 2, in Tamil",
+    "pages": 246,
+    "size": "31 MB",
+    "label": "Volume 2, 1920 edition"
+  },
+  {
+    "file": "/pdf/jivanandanam-introduction.pdf",
+    "match": "<cite>Jīvānandanam",
+    "pages": 80,
+    "size": "8 MB",
+    "label": "Introduction"
+  },
+  {
+    "file": "/pdf/jivanandanam-part-7.pdf",
+    "match": "<cite>Jīvānandanam",
+    "pages": 76,
+    "size": "7 MB",
+    "label": "Part 7"
+  },
+  {
+    "file": "/pdf/madhava-nidhanam.pdf",
+    "match": "<cite>Madhava Nidhana",
+    "pages": 160,
+    "size": "18 MB"
+  },
+  {
+    "file": "/pdf/pillaip-pini-vakatam.pdf",
+    "match": "<cite>Pillaip Pini Vakatam",
+    "pages": 123,
+    "size": "9 MB"
+  },
+  {
+    "file": "/pdf/rasaratna-samuchchaya.pdf",
+    "match": "<cite>Rasaratna Samuchchaya",
+    "pages": 115,
+    "size": "14 MB"
+  },
+  {
+    "file": "/pdf/sarngadhara-samhita-1927.pdf",
+    "match": "<cite>Sarngadhara Samhita</cite>, in Tamil",
+    "pages": 444,
+    "size": "54 MB",
+    "label": "3rd edition, 1927"
+  },
+  {
+    "file": "/pdf/sarngadhara-samhita-1950.pdf",
+    "match": "<cite>Sarngadhara Samhita</cite>, in Tamil",
+    "pages": 154,
+    "size": "19 MB",
+    "label": "4th revised edition, 1950"
+  },
+  {
+    "file": "/pdf/hamsa-sandesham-tamil.pdf",
+    "match": "<cite>Hamsa Sandesham",
+    "pages": 117,
+    "size": "13 MB"
+  },
+  {
+    "file": "/pdf/tantra-sara-sangraha.pdf",
+    "match": "<cite>Tantra Sara Sangraha",
+    "pages": 567,
+    "size": "28 MB"
+  },
+  {
+    "file": "/pdf/katampari.pdf",
+    "match": "<cite>Kātampari",
+    "pages": 104,
+    "size": "33 MB"
+  },
+  {
+    "file": "/pdf/kiratarjuniya.pdf",
+    "match": "<cite>Kirat Arjuniya",
+    "pages": 42,
+    "size": "3 MB"
+  },
+  {
+    "file": "/pdf/presidential-address.pdf",
+    "match": "<cite>The Presidential Address",
+    "pages": 38,
+    "size": "2 MB"
+  },
+  {
+    "file": "/pdf/mekasantecam.pdf",
+    "match": "<cite>Mēkasantēcam",
+    "pages": 118,
+    "size": "5 MB"
+  }
+]
