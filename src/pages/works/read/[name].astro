@@ -8,8 +8,8 @@ import { link } from '../../../lib/url';
 export function getStaticPaths() {
   const cites = bio.bibliography.groups.flatMap((g) => g.items.map((it) => it.text));
   return pdfs.map((p) => {
-    const cite = cites.find((c) => c.includes(p.match)) ?? '';
-    const title = cite.match(/<cite>(.*?)<\/cite>/)?.[1] ?? '';
+    const cite = (p.match && cites.find((c) => c.includes(p.match))) || '';
+    const title = ('title' in p && p.title) || cite.match(/<cite>(.*?)<\/cite>/)?.[1] || '';
     return { params: { name: p.file.replace(/^\/pdf\/|\.pdf$/g, '') }, props: { ...p, title, cite } };
   });
 }
@@ -22,7 +22,7 @@ const pdf = link(file);
   <section class="page-head wrap">
     <span class="eyebrow"><a href={link('/works/')}>Books</a></span>
     <h1>{title}{label && <span class="sub">{label}</span>}</h1>
-    <p class="citation" set:html={cite} />
+    {cite && <p class="citation" set:html={cite} />}
     <p>PDF, {pages} pages, {size}.</p>
     <div class="actions">
       <a class="btn solid" href={pdf} target="_blank" rel="noopener">Open the PDF</a>

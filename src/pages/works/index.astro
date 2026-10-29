@@ -55,7 +55,7 @@ const entry = (it: { text: string; note?: string }) => {
   return {
     title,
     citation: it.text,
-    pdfs: pdfs.filter((p) => it.text.includes(p.match)),
+    pdfs: pdfs.filter((p) => p.match && it.text.includes(p.match)),
     image: book?.image,
     id: book ? slug(book.title) : undefined,
     description: [...(book?.description ?? []), ...(it.note ? [it.note] : [])],
@@ -111,11 +111,23 @@ const groups = [...new Set(rest.map((b) => b.category))];
         {t.label === 'Vedanta Philosophy' && (
           <WorkCard title="Hamsa Sandesham (English Translation)" id="hamsa-sandesham" headingLevel="h3" description={[]}>
             <p class="tp">{hamsaPdf.titlePage.map((l) => <span>{l}</span>)}</p>
-            <p>English translation by {hamsaPdf.translator}. PDF, {hamsaPdf.pages} pages, {hamsaPdf.size}.</p>
-            <div class="actions">
-              <a class="btn solid" href={link('/works/hamsa-sandesham/')}>Read online</a>
-              <a class="btn" href={link(hamsaPdf.href)} download>Download PDF</a>
+            <p>English translation by {hamsaPdf.translator}.</p>
+            <div class="pdf">
+              <p class="pdf-info"><strong>Version from the old vaidyacharya.org website. </strong>PDF, {hamsaPdf.pages} pages, {hamsaPdf.size}.</p>
+              <div class="actions">
+                <a class="btn solid" href={link('/works/hamsa-sandesham/')}>Read online</a>
+                <a class="btn" href={link(hamsaPdf.href)} download>Download PDF</a>
+              </div>
             </div>
+            {pdfs.filter((p) => p.card === 'hamsa-english').map((p) => (
+              <div class="pdf">
+                <p class="pdf-info"><strong>{p.label}. </strong>PDF, {p.pages} pages, {p.size}.</p>
+                <div class="actions">
+                  <a class="btn solid" href={link(`/works/read/${p.file.replace(/^\/pdf\/|\.pdf$/g, '')}/`)}>Read online</a>
+                  <a class="btn" href={link(p.file)} download>Download PDF</a>
+                </div>
+              </div>
+            ))}
           </WorkCard>
         )}
         {panels[i].entries.map((e) => (

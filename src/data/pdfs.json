@@ -75,7 +75,15 @@
     "file": "/pdf/katampari.pdf",
     "match": "<cite>Kātampari",
     "pages": 104,
-    "size": "33 MB"
+    "size": "33 MB",
+    "label": "In Tamil"
+  },
+  {
+    "file": "/pdf/katampari-english-translation.pdf",
+    "match": "<cite>Kātampari",
+    "pages": 81,
+    "size": "857 KB",
+    "label": "English translation by Usha Srinivasan"
   },
   {
     "file": "/pdf/kiratarjuniya.pdf",
@@ -94,5 +102,20 @@
     "match": "<cite>Mēkasantēcam",
     "pages": 118,
     "size": "5 MB"
+  },
+  {
+    "file": "/pdf/pancaratraraksa.pdf",
+    "match": "<cite>Śrī Pāñcarātrarakṣā",
+    "pages": 281,
+    "size": "22 MB"
+  },
+  {
+    "file": "/pdf/hamsa-sandesham-english-translation-2020.pdf",
+    "match": null,
+    "pages": 42,
+    "size": "380 KB",
+    "label": "July 2020 version",
+    "title": "Hamsa Sandesham (English Translation)",
+    "card": "hamsa-english"
   }
 ]
