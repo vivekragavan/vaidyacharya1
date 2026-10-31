@@ -5,7 +5,10 @@
   "tree": {
     "id": "duraiswami",
     "name": "Pandit Duraiswami Aiyangar",
+    "boxName": "Pt. Duraiswami Aiyangar",
     "role": "1888 – 1956",
+    "biography": true,
+    "bibliography": true,
     "note": "Physician, scholar, translator and founder of the journal Vaidya Kalanidhi.",
     "link": "/biography/#bibliography",
     "linkLabel": "See his full bibliography",
@@ -22,11 +25,48 @@
         "id": "vijayaraghavan",
         "name": "M.D. Vijayaraghavan",
         "role": "Eldest son · b. 1922",
-        "publications": [],
+        "source": "Published as M.D. Vijayaraghavan in India",
+        "publications": [
+          {
+            "title": "Techno-economics of phosphoric acid production",
+            "venue": "Paper read at the Fertiliser Association of India, Delhi, October 4, 1969 · reported in Technology, vol. 7 · as Director of Projects, Dorr-Oliver (India)",
+            "year": "1969",
+            "url": "https://archive.org/details/cftri.0114technologyvol70000snro"
+          },
+          {
+            "title": "Phosphoric acid and phosphatic fertiliser plants from maximum Indian engineering and manufacture",
+            "venue": "Proceedings of a 1966 seminar on the cost and financing of fertiliser projects in India, pp. 195–207",
+            "year": "1967",
+            "url": "https://archive.org/details/CAT10183112059"
+          },
+          {
+            "title": "Multi-stage bleaching for bamboo and bagasse pulp (rest of title not found)",
+            "venue": "With V.G. Desai · indexed in the International Sugar Journal, 1966",
+            "year": "1966",
+            "url": "https://archive.org/details/sim_international-sugar-journal_1966_68_index"
+          },
+          {
+            "title": "Gaps in the Facilities of Chemical Plant Design in the Country",
+            "venue": "First Get Together of Research and Industry · Dorr-Oliver (India), Bombay",
+            "year": "1965",
+            "url": "https://archive.org/details/cftri.43firstgettogether0000coun"
+          },
+          {
+            "title": "Paper on machinery of Indian manufacture (start of title not found)",
+            "venue": "United Nations, New York, 6 pages · catalogued with Dorr-Oliver (India)",
+            "year": "1962",
+            "url": "https://archive.org/details/nationalunioncat0049vari"
+          },
+          {
+            "title": "Project Cost Estimation in India: An Appraisal",
+            "venue": "Indian Chem. J., vol. 3, no. 6 · cited in the Encyclopedia of Chemical Processing and Design",
+            "url": "https://archive.org/details/encyclopediaofch0012unse"
+          }
+        ],
         "children": [
           {
             "id": "vanaja",
-            "name": "Vanaja Ragavan",
+            "name": "Dr. Vanaja Ragavan",
             "role": "Granddaughter",
             "publications": [
               {
@@ -47,6 +87,12 @@
             "linkLabel": "About Vivek",
             "publications": [
               {
+                "title": "Using 60 GHz for New Indoor Wireless Backbone Networks",
+                "venue": "EE Times (reprinted in EE Times Asia)",
+                "year": "2024",
+                "url": "https://www.eetimes.com/using-60-ghz-for-new-indoor-wireless-backbone-networks/"
+              },
+              {
                 "title": "A study of the integrated optic monochromator",
                 "venue": "M.S. thesis, Electrical Engineering, Cornell University",
                 "year": "1977"
@@ -54,7 +100,7 @@
             ],
             "spouse": {
               "id": "nilima",
-              "name": "Nilima Ragavan",
+              "name": "Dr. Nilima Ragavan",
               "role": "Wife",
               "publications": [
                 {
@@ -115,13 +161,19 @@
                       "url": "https://patents.google.com/patent/IN146980B/en"
                     }
                   ]
+                },
+                {
+                  "id": "indira",
+                  "name": "Indira Manudhane",
+                  "role": "Nilima’s mother",
+                  "publications": []
                 }
               ]
             },
             "children": [
               {
                 "id": "maya",
-                "name": "Maya Ragavan",
+                "name": "Dr. Maya Ragavan",
                 "role": "Great-granddaughter",
                 "publications": [
                   {
@@ -924,7 +976,7 @@
               },
               {
                 "id": "meera",
-                "name": "Meera Ragavan",
+                "name": "Dr. Meera Ragavan",
                 "role": "Great-granddaughter",
                 "publications": [
                   {
@@ -1284,11 +1336,65 @@
             ],
             "mentions": [
               {
+                "title": "Airvine gets $6.2M in funding for indoor wireless at 60GHz",
+                "venue": "Light Reading",
+                "year": "2024",
+                "url": "https://www.lightreading.com/it-infrastructure/airvine-gets-6-2m-in-funding-for-indoor-wireless-at-60ghz"
+              },
+              {
+                "title": "Breakthrough 60 GHz tech from Airvine blasts through walls to make cabling redundant",
+                "venue": "Wi-Fi NOW · Claus Hetting",
+                "year": "2020",
+                "url": "https://wifinowglobal.com/news-and-blog/breakthrough-60-ghz-tech-from-airvine-blasts-through-walls-to-make-cabling-redundant/"
+              },
+              {
+                "title": "Billions in the Bubble: Siara CEO Vivek Ragavan (Part 4)",
+                "venue": "Sramana Mitra on Strategy · interview series",
+                "year": "2009",
+                "url": "https://www.sramanamitra.com/2009/03/14/billions-in-the-bubble-siara-ceo-vivek-ragavan-part-4/"
+              },
+              {
+                "title": "Vivek Ragavan – Atrica Inc",
+                "venue": "The Wall Street Transcript · interview",
+                "year": "2004",
+                "url": "https://www.twst.com/interview/vivek-ragavan-atrica-inc"
+              },
+              {
+                "title": "Atrica Plugs Into France Telecom",
+                "venue": "Light Reading · Mary Jander",
+                "year": "2002",
+                "url": "https://www.lightreading.com/cable-technology/atrica-plugs-into-france-telecom"
+              },
+              {
+                "title": "Ex-Redback Chief Joins Atrica",
+                "venue": "Light Reading",
+                "year": "2001",
+                "url": "https://www.lightreading.com/business-management/ex-redback-chief-joins-atrica"
+              },
+              {
+                "title": "Redback Names New Execs",
+                "venue": "Light Reading",
+                "year": "2000",
+                "url": "https://www.lightreading.com/business-management/redback-names-new-execs"
+              },
+              {
                 "title": "Ramp Champs: Redback Networks, No. 7 of the 20 best-managed fast-growing tech companies",
                 "venue": "Forbes ASAP · Clint Willis",
                 "year": "2000",
                 "url": "https://www.forbes.com/asap/2000/0403/084_print.html",
                 "inBox": "Forbes ASAP · 2000"
+              },
+              {
+                "title": "Redback/Siara Merger Complete",
+                "venue": "Light Reading",
+                "year": "2000",
+                "url": "https://www.lightreading.com/network-technology/redback-siara-merger-complete"
+              },
+              {
+                "title": "Redback pays $4.3B for company still in prototype stage",
+                "venue": "EE Times · Loring Wirbel",
+                "year": "1999",
+                "url": "https://www.eetimes.com/redback-pays-4-3b-for-company-still-in-prototype-stage/"
               }
             ]
           }
@@ -1303,7 +1409,73 @@
               "id": "alagasingam",
               "name": "Dr. Alagasingam Vasudevan",
               "role": "Vimala’s father",
-              "publications": []
+              "source": "Published as A. Vasudevan",
+              "publications": [
+                {
+                  "title": "Tuberculosis in Some Rare Situations, Namely Tonsils and Uterus",
+                  "venue": "Indian Medical Gazette · with K.G. Krishnaswamy and Amar Nath Goyle",
+                  "year": "1936",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5170590/"
+                },
+                {
+                  "title": "Epithelioma Adenoides Cysticum: Reports of Three Cases",
+                  "venue": "Indian Medical Gazette · with A.N. Goyle and K.G. Krishnaswami",
+                  "year": "1936",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5170435/"
+                },
+                {
+                  "title": "Ewing’s Sarcoma: A Clinical and Pathological Study of a Case",
+                  "venue": "Indian Medical Gazette · with Amar Nath Goyle and K.G. Krishnaswamy",
+                  "year": "1935",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5169804/"
+                },
+                {
+                  "title": "Tuberculosis of the Mammary Gland",
+                  "venue": "Indian Medical Gazette · with Amar Nath Goyle and K.G. Krishnaswamy",
+                  "year": "1935",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5169470/"
+                },
+                {
+                  "title": "An Unusual Form of Tuberculosis: Report of a Case",
+                  "venue": "Indian Medical Gazette · with A.N. Goyle and K.G. Krishnaswamy",
+                  "year": "1934",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5159027/"
+                },
+                {
+                  "title": "Gastric Syphilis",
+                  "venue": "Indian Medical Gazette · with E.W.C. Bradfield",
+                  "year": "1929",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5164319/"
+                },
+                {
+                  "title": "Primary Carcinoma of Liver in South India",
+                  "venue": "Journal of Pathology and Bacteriology, vol. 32, p. 342 · with P.N. Basu",
+                  "year": "1929"
+                },
+                {
+                  "title": "A Case of Rhinosporidiosis in a Female",
+                  "venue": "Journal of Laryngology and Otology, vol. 44, p. 518 · with P.V. Cherian",
+                  "year": "1929"
+                },
+                {
+                  "title": "Case report of a man knocked down by a motor bus (original title not found)",
+                  "venue": "With P.N. Basu, Madras General Hospital · noted in the Indian Medical Gazette’s review of 1928",
+                  "year": "1928",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5164775/"
+                },
+                {
+                  "title": "Mycetoma",
+                  "venue": "Indian Medical Gazette · with E.W.C. Bradfield",
+                  "year": "1927",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5197977/"
+                },
+                {
+                  "title": "Case of Sarcocystis infection in a man (original title not found)",
+                  "venue": "Indian Journal of Medical Research, July 1927 · noted in the Indian Medical Gazette’s review of 1927",
+                  "year": "1927",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5235841/"
+                }
+              ]
             },
             {
               "id": "singari",
@@ -1313,7 +1485,7 @@
               "parents": [
                 {
                   "id": "srinivasa-iyengar",
-                  "name": "P.T. Srinivasa Iyengar",
+                  "name": "Dr. P.T. Srinivasa Iyengar",
                   "role": "Singari Ammal’s father",
                   "publications": [
                     {
@@ -1387,7 +1559,8 @@
                       "venue": "History of India in Telugu · Macmillan"
                     }
                   ],
-                  "note": "Historian, linguist and educationist (1863–1931). Principal of A.V.N. College, Visakhapatnam, and later Reader in Indian History and Archaeology at the University of Madras."
+                  "note": "Pillaipundagudi Thiruvengadattaiyangar Srinivasa Iyengar (1863–1931) was a historian, linguist and educationist whose books dealt largely with South Indian history. In the early twentieth century he led A.V.N. College in Visakhapatnam as principal and pressed for curricula that used spoken language. He founded a society to reform the teaching of Telugu in 1909, published an arithmetic textbook in modern Telugu in 1911, and in 1913 sat on a ten-member Madras University committee advising on the style of Telugu composition for the Intermediate Course. He was principal and professor of English at Rajahmundry Training College before becoming Reader in Indian History and Archaeology at the University of Madras, a post he held until his death.",
+                  "noteSource": { "label": "Based on Wikipedia", "url": "https://en.wikipedia.org/wiki/P._T._Srinivasa_Iyengar" }
                 }
               ]
             }
@@ -1599,7 +1772,7 @@
     "parents": [
       {
         "id": "vijayaraghavachari",
-        "name": "M. Vijaya­raghavachari",
+        "name": "M. Vijaya­raghavachar",
         "role": "Duraiswami Aiyangar’s father",
         "publications": []
       }
