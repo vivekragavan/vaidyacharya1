@@ -26,15 +26,13 @@ npm run build     # builds the finished site into dist/
 npm run preview   # serves dist/ so you can check the build
 ```
 
-## Publish the preview
+## How changes go live
 
-```sh
-sh scripts/deploy-pages.sh
-```
+Every change pushed to `main` publishes itself to **https://www.vaidyacharya.org** in about a minute (`.github/workflows/publish.yml`). Ask Claude Code for the change, let it commit and push, then refresh the site. The Actions tab on GitHub shows each publish; a red cross means the build failed and the live site stayed as it was.
 
-This builds the site under the `/vaidyacharya` path and pushes it to the `gh-pages` branch. GitHub Pages serves that branch at `https://<owner>.github.io/vaidyacharya/`. Give it a minute or two to update.
+Old WordPress addresses such as `/about-us/` and `/hamsa-sandeshamenglish-translation/` redirect to the new pages.
 
-For the real domain, run `npm run build` with no extra settings and upload `dist/` to any static host. It assumes `https://www.vaidyacharya.org` at the root. Old WordPress addresses such as `/about-us/` and `/hamsa-sandeshamenglish-translation/` redirect to the new pages.
+`sh scripts/deploy-pages.sh` still builds a preview copy under `https://<owner>.github.io/<repo>/` if you ever want one; it is not needed for the live site.
 
 ## Where things live
 

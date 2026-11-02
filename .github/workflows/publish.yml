@@ -1,0 +1,51 @@
+# Publishes the site to www.vaidyacharya.org every time a change lands on main.
+# Vivek's workflow: ask Claude Code for a change, it commits and pushes to main,
+# and this builds the site and puts it live in about a minute.
+name: Publish to www.vaidyacharya.org
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Build for the real domain (root path, indexed by search engines)
+        run: npm run build
+        env:
+          SITE_URL: https://www.vaidyacharya.org
+          BASE_PATH: /
+      - run: touch dist/.nojekyll
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    # Only the real repo publishes, only from main. Pull requests and copies just build.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && !github.event.repository.fork
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
