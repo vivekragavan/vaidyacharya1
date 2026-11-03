@@ -99,6 +99,14 @@
     "size": "2 MB"
   },
   {
+    "file": "/pdf/presidential-address-english.pdf",
+    "match": "<cite>The Presidential Address",
+    "pages": 50,
+    "size": "759 KB",
+    "label": "English translation by S. Usha",
+    "english": true
+  },
+  {
     "file": "/pdf/mekasantecam.pdf",
     "match": "<cite>Mēkasantēcam",
     "pages": 118,
